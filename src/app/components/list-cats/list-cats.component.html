@@ -1,1 +1,18 @@
-<p>list-cats works!</p>
+<div class="container">
+  <button class="btn-go-to-page-vote" (click)="goToPageVote();">Voter</button>
+  <h1>Les plus beaux chats</h1>
+
+  @for (image of images; track $index) {
+  <mat-card>
+    <mat-card-content>
+      <img [src]="image['url']" alt="">
+      <h2>{{ image['id'] }}</h2>
+
+      <div class="score-wrap">
+        <h3>Likes <mat-icon>favorite</mat-icon></h3>
+        <div class="score">12</div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  }
+</div>
