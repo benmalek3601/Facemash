@@ -1,1 +1,22 @@
-<p>vote-cats works!</p>
+<div class="ensign-wraper">
+  <img src="/assets/cat-matsh.png" alt="ensign company">
+  <h1>Cat mash</h1>
+</div>
+
+<div class="mash-wraper">
+  <div class="left-wraper">
+    <div class="cat-mash">
+      <img [src]="firstCat.url" alt="">
+    </div>
+  </div>
+  <div class="right-wraper">
+    <div class="cat-mash">
+      <img [src]="secondCat.url" alt="">
+    </div>
+  </div>
+</div>
+
+<button class="btn-go-home" (click)="goToHome();">
+  Voir les plus beaux chats
+  <span>{{ voteScore }} vote@if(voteScore > 1){s}</span>
+</button>
