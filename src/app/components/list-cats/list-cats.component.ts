@@ -5,7 +5,10 @@ import { Router } from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 
-import { ListCatsService } from '../../services/list-cats/list-cats.service';
+import { CatsService } from '../../services/cats/cats.service';
+
+import { Cat } from '../../models/cats';
+
 
 @Component({
   selector: 'app-list-cats',
@@ -15,14 +18,14 @@ import { ListCatsService } from '../../services/list-cats/list-cats.service';
   styleUrl: './list-cats.component.scss'
 })
 export class ListCatsComponent {
-  images: [] = [];
+  cats: Cat[] = [];
 
-  constructor(private router: Router, readonly listCatsService: ListCatsService) {}
+  constructor(private router: Router, readonly catsService: CatsService) {}
 
   ngOnInit(): void {
-    this.listCatsService.getCats().subscribe({
+    this.catsService.getCats().subscribe({
       next: res => {
-        this.images = res.images;
+        this.cats = res;
         // console.log('iciii : ', res);
       }
     })

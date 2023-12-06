@@ -4,16 +4,20 @@
 </div>
 
 <div class="mash-wraper">
-  <div class="left-wraper">
-    <div class="cat-mash">
-      <img [src]="firstCat.url" alt="">
+  @if(firstCat) {
+    <div class="left-wraper">
+      <div class="cat-mash" (click)="firstCatMash()">
+        <img [src]="firstCat.url" alt="">
+      </div>
     </div>
-  </div>
-  <div class="right-wraper">
-    <div class="cat-mash">
-      <img [src]="secondCat.url" alt="">
+  }
+  @if(secondCat) {
+    <div class="right-wraper">
+      <div class="cat-mash" (click)="secondCatMash()">
+        <img [src]="secondCat.url" alt="">
+      </div>
     </div>
-  </div>
+  }
 </div>
 
 <button class="btn-go-home" (click)="goToHome();">

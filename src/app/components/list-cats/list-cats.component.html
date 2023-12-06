@@ -2,15 +2,15 @@
   <button class="btn-go-to-page-vote" (click)="goToPageVote();">Voter</button>
   <h1>Les plus beaux chats</h1>
 
-  @for (image of images; track $index) {
+  @for (cat of cats; track $index) {
   <mat-card>
     <mat-card-content>
-      <img [src]="image['url']" alt="">
-      <h2>{{ image['id'] }}</h2>
+      <img [src]="cat['url']" alt="">
+      <h2>{{ cat['id'] }}</h2>
 
       <div class="score-wrap">
-        <h3>Likes <mat-icon>favorite</mat-icon></h3>
-        <div class="score">12</div>
+        <h3>Like@if(cat['score'] && cat['score'] > 1){s} <mat-icon>favorite</mat-icon></h3>
+        <div class="score">{{ cat['score'] }}</div>
       </div>
     </mat-card-content>
   </mat-card>
