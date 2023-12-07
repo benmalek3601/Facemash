@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-card-content>
+    <img [src]="cat['url']" alt="">
+    <h2>{{ cat['id'] }}</h2>
+
+    <div class="score-wrap">
+      <h3>Like@if(cat['score'] && cat['score'] > 1){s} <mat-icon>favorite</mat-icon></h3>
+      <div class="score">{{ cat['score'] }}</div>
+    </div>
+  </mat-card-content>
+</mat-card>
