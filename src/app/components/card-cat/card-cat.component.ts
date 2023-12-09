@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,7 +10,8 @@ import { Cat } from '../../models/cats';
   standalone: true,
   imports: [MatCardModule, MatIconModule],
   templateUrl: './card-cat.component.html',
-  styleUrl: './card-cat.component.scss'
+  styleUrl: './card-cat.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardCatComponent {
   @Input() cat!: Cat;

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { Subject, takeUntil } from 'rxjs';
 
 import { CatsService } from '../../services/cats/cats.service';
 
@@ -13,17 +15,21 @@ import { Cat } from '../../models/cats';
   templateUrl: './vote-cats.component.html',
   styleUrl: './vote-cats.component.scss'
 })
-export class VoteCatsComponent {
+export class VoteCatsComponent implements OnInit, OnDestroy {
   voteScore: number = 5;
   cats!: Cat[];
   firstCat: Cat = <Cat>{};
   secondCat: Cat = <Cat>{};
 
+  destroy$: Subject<void> = new Subject<void>();
+
 
   constructor(private router: Router, readonly catsService: CatsService) {}
 
   ngOnInit(): void {
-    this.catsService.getCats().subscribe({
+    this.catsService.getCats().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
       next: res => {
         this.cats = res;
         this.getRandomCats();
@@ -37,11 +43,13 @@ export class VoteCatsComponent {
       score: <number>(this.firstCat.score) + 1
     };
 
-    this.catsService.putCat(data, this.firstCat.id).subscribe({
-      next: (res) => {
+    this.catsService.putCat(data, this.firstCat.id).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: () => {
         this.getRandomCats();
       },
-      error: (e) => alert('Error while updating the score !!'),
+      error: () => alert('Error while updating the score !!'),
     });
   }
 
@@ -51,8 +59,10 @@ export class VoteCatsComponent {
       score: <number>(this.secondCat.score) + 1
     };
 
-    this.catsService.putCat(data, this.secondCat.id).subscribe({
-      next: (res) => {
+    this.catsService.putCat(data, this.secondCat.id).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: () => {
         this.getRandomCats();
       },
       error: (e) => alert('Error while updating the score !!'),
@@ -80,4 +90,10 @@ export class VoteCatsComponent {
   goToHome() {
     this.router.navigateByUrl('/');
   }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
 }

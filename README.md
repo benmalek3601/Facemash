@@ -5,6 +5,7 @@ Ce projet a été généré avec [Angular CLI](https://github.com/angular/angula
 Utiliser, à traver NVM par exemple, une verion de Node entre la version **^18.13.0 || ^20.9.0** selon [la documentation de compatibilité de version du Angular](https://angular.io/guide/versions)
 
 ## Installation
+
 Merci de lancer un `npm install`
 
 ## Serveur de développement
@@ -12,6 +13,7 @@ Merci de lancer un `npm install`
 Exécutez `ng serve` pour un serveur de développement. Accédez à `http://localhost:4200/`. L'application se rechargera automatiquement si vous modifiez l'un des fichiers source.
 
 ## Simulateur de Serveur Backend
+
 Exécuter `npm i -g json-server` pour installer Json Server globalement
 Exécutez  `json-server --watch db.json` pour lancer le similateur serveur Backend
 
