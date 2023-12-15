@@ -11,11 +11,11 @@ export class CatsService {
   constructor(private http: HttpClient) { }
 
   getCats() {
-    return this.http.get<any>('http://localhost:3000/cats');
+    return this.http.get<any>('https://facemash-api.onrender.com/cats');
   }
 
   putCat(data: Cat, id: string) {
-    return this.http.put<any>("http://localhost:3000/cats/" +  id, data);
+    return this.http.put<any>("https://facemash-api.onrender.com/cats/" +  id, data);
   }
 
 }
